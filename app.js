@@ -1,11 +1,10 @@
-// const add = require('./utils')
+// NPM PACKAGES
+const validator = require('validator');
 
-// const sum = add(4, -2);
-
-// console.log(sum);
-
+// EXPORTED FILES
 const getNotes = require('./notes');
 
 const msg = getNotes();
 
 console.log(msg);
+console.log(validator.isURL('https://mead.io'));
