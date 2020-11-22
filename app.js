@@ -1,10 +1,8 @@
-// NPM PACKAGES
-const validator = require('validator');
-
-// EXPORTED FILES
+// DEPENDENCIES
+const chalk = require('chalk');
 const getNotes = require('./notes');
 
 const msg = getNotes();
-
 console.log(msg);
-console.log(validator.isURL('https://mead.io'));
+
+console.log(chalk.green.bold.inverse('Success!'));
