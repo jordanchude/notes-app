@@ -8,10 +8,28 @@ yargs.version('1.1.0');
 
 // Create add command
 yargs.command({
+    // command for terminal
     command: 'add',
+    // description of command
     describe: 'Add a new note',
-    handler: function () {
-        console.log('Adding a new note');
+    // An object that defines the options the command supports
+    builder: {
+        title: {
+            describe: 'Note title',
+            // require title in order for the command to run correctly
+            demandOption: true,
+            // interpret command as string
+            type: 'string'
+        },
+        description: {
+            describe: 'Note description',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        console.log('Title: ' + argv.title);
+        console.log('Description: ' + argv.description);
     }
 })
 
@@ -44,4 +62,6 @@ yargs.command({
 
 // add, remove, read, list
 
-console.log(yargs.argv);
+// parsing argument with all configuring details provided
+yargs.parse()
+// console.log(yargs.argv);
