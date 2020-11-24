@@ -1,7 +1,7 @@
 // DEPENDENCIES
 const chalk = require('chalk');
 const yargs = require('yargs');
-const getNotes = require('./notes');
+const notes = require('./notes');
 
 // Customize yargs version
 yargs.version('1.1.0');
@@ -21,15 +21,14 @@ yargs.command({
             // interpret command as string
             type: 'string'
         },
-        description: {
-            describe: 'Note description',
+        body: {
+            describe: 'Note body',
             demandOption: true,
             type: 'string'
         }
     },
     handler: function (argv) {
-        console.log('Title: ' + argv.title);
-        console.log('Description: ' + argv.description);
+        notes.addNote(argv.title, argv.body)
     }
 })
 
