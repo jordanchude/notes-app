@@ -1,5 +1,6 @@
 // DEPENDENCIES
 const fs = require('fs');
+const chalk = require('chalk');
 
 // HELPER FUNCTIONS
 const getNotes = function() {
@@ -44,19 +45,16 @@ const addNote = function (title, body) {
 const removeNote = function (title) {
     const notes = loadNotes();
 
-    const noteToRemove = notes.filter(function (note) {
-        return note.title === title;
+    const notesToKeep = notes.filter(function (note) {
+        return note.title !== title;
     });
 
-    const noteIndex = notes.findIndex(note => note.title === title);
-
-    if (noteToRemove.length > 0) {
-        notes.splice(noteIndex, 1);
-        console.log(`Note with title "${title}" removed`);
+    if (notesToKeep.length !== notes.length) {
+        console.log(chalk.green("Note removed"));
     } else {
-        console.log(`Note with title "${title}" does not exist`);
+        console.log(chalk.red("Note unsuccessfully removed"));
     }
-    saveNotes(notes);
+    saveNotes(notesToKeep);
 };
 
 module.exports = {
