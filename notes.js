@@ -36,9 +36,9 @@ const addNote = function (title, body) {
         });
     
         saveNotes(notes);
-        console.log('New note added!');
+        console.log(chalk.green.inverse('New note added!'));
     } else {
-        console.log('Note title taken');
+        console.log(chalk.red.inverse('Note title taken'));
     }
 };
 
@@ -49,10 +49,10 @@ const removeNote = function (title) {
         return note.title !== title;
     });
 
-    if (notesToKeep.length !== notes.length) {
-        console.log(chalk.green("Note removed"));
+    if (notes.length > notesToKeep.length) {
+        console.log(chalk.green.inverse("Note removed!"));
     } else {
-        console.log(chalk.red("Note unsuccessfully removed"));
+        console.log(chalk.red.inverse("No note found"));
     }
     saveNotes(notesToKeep);
 };
