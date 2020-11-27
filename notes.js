@@ -3,7 +3,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 
 // HELPER FUNCTIONS
-const getNotes = function() {
+const getNotes = () => {
     return "Your notes...";
 };
 
@@ -25,9 +25,8 @@ const saveNotes = (notes) => {
 // NOTE FUNCTIONS
 const addNote = (title, body) => {
     const notes = loadNotes();
-    const duplicateNotes = notes.filter(function (note) {
-        return note.title === title;
-    })
+
+    const duplicateNotes = notes.filter(note => note.title === title);
     
     if (duplicateNotes.length === 0) {
         notes.push({
